@@ -20,6 +20,34 @@ This project implements a graph-based data modeling + conversational query syste
   - Primary: OpenRouter API (`OPENROUTER_API_KEY`)
   - Fallback: deterministic SQL templates for key example questions
 
+## Architecture decisions (why this design)
+
+- **FastAPI backend** was chosen for quick API iteration, simple startup lifecycle hooks (data bootstrap), and straightforward deployment on free tiers.
+- **SQLite** was chosen because the assignment uses tabular CSV inputs, and SQL is ideal for trace and aggregation-style business questions with no auth/multi-tenant requirements.
+- **NetworkX context graph** is built in-memory at query time to support interactive graph visualization and business-flow traversal without introducing external graph infrastructure.
+- **Static frontend** keeps the UI simple and dependency-light while still supporting graph exploration and chat interactions.
+
+## Database choice rationale
+
+- Dataset files are relational in nature (orders, deliveries, invoices, payments).
+- Query workload is mostly read-heavy analytics and traceability.
+- SQLite provides zero-ops local/dev setup, deterministic behavior, and easy portability for deployment.
+- The database is rebuilt from normalized source files to keep derived state reproducible.
+
+## LLM prompting and query strategy
+
+- The assistant receives a constrained objective: translate in-domain natural language questions into executable SQL against known business tables.
+- Table aliases and schema normalization are applied before query generation, reducing prompt ambiguity.
+- A deterministic SQL-template fallback handles key benchmark questions when LLM output is unavailable or unnecessary.
+- Final answers are based on SQL execution results (not free-form LLM text), ensuring responses are grounded in dataset facts.
+
+## Guardrails
+
+- Out-of-domain prompts are rejected early with a fixed response:
+  - `This system is designed to answer questions related to the provided dataset only.`
+- Only dataset-focused analytical/traceability questions are processed.
+- This reduces hallucination risk and keeps behavior aligned with assignment scope.
+
 ## Project structure
 
 - `app/main.py` : API + static UI entrypoint
@@ -94,3 +122,10 @@ For final submission, add:
 - deployed demo URL
 - public GitHub repo URL
 - exported AI session transcripts/logs
+
+### Submission checklist
+
+- Working demo link (public, no auth)
+- Public GitHub repository link
+- README with architecture decisions, DB rationale, prompting strategy, and guardrails
+- AI coding session logs (Cursor/Claude/Copilot transcripts)
