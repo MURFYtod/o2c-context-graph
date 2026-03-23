@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: o2c-context-graph
+    env: python
+    plan: free
+    rootDir: Task
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.13
+      - key: DATASET_FILE_ID
+        value: 1UqaLbFaveV-3MEuiUrzKydhKmkeC1iAL
+      - key: OPENROUTER_MODEL
+        value: meta-llama/llama-3.1-8b-instruct:free

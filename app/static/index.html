@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order-to-Cash Context Graph</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Order-to-Cash Context Graph</h1>
+      <button id="reloadBtn">Reload Dataset</button>
+    </header>
+    <main>
+      <section class="graph-panel">
+        <div id="graph"></div>
+        <pre id="nodeMeta">Click a node to inspect metadata.</pre>
+      </section>
+      <section class="chat-panel">
+        <h2>Chat with Graph</h2>
+        <div id="chatLog"></div>
+        <textarea id="question" placeholder="Ask a dataset question..."></textarea>
+        <button id="askBtn">Send</button>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

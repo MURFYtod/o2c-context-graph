@@ -1,0 +1,15 @@
+# Secrets
+.env
+
+# Python cache/build
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local dataset and generated database
+data/
+.tmp_dataset/
+
+# OS/editor
+.DS_Store
+Thumbs.db

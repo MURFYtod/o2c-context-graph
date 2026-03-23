@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+networkx
+python-dotenv
+jinja2
+requests
+gdown
