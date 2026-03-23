@@ -56,6 +56,8 @@ This project implements a graph-based data modeling + conversational query syste
 - `app/services/query_service.py` : NL query guardrails + SQL generation + execution
 - `app/static/` : graph + chat UI
 - `data/` : place dataset CSV files here
+- `src/` : submission-compatible source mirror
+- `sessions/` : exported AI coding session logs
 
 ## Setup
 
