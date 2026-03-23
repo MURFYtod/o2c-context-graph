@@ -3,7 +3,6 @@ services:
     name: o2c-context-graph
     env: python
     plan: free
-    rootDir: Task
     buildCommand: pip install -r requirements.txt
     startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
